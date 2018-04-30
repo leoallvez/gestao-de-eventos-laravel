@@ -25,7 +25,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        dd('create');
     }
 
     /**
@@ -36,7 +36,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('store');
     }
 
     /**
@@ -47,7 +47,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -58,7 +58,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd('edit');
     }
 
     /**
@@ -70,7 +70,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('update');
     }
 
     /**
@@ -81,6 +81,10 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $event = Event::find($id);
+
+       flash("Event deleted successfully!",'success');
+
+       return redirect('events');
     }
 }

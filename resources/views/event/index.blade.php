@@ -5,8 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Events</div>
+                <div class="card-header">
+                    Events
+                    <div class="float-right">
+                        <button type="button" class="btn btn-success btn-sm">New</button>
+                    </div>
+                </div>
+                
                 <div class="card-body">
+                    @include('flash::message')
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -19,7 +26,10 @@
                                 <th scope="col">
                                     Address
                                 </th>
-                                <th class="text-center">
+                                <th scope="col">
+                                    Posted?
+                                </th>
+                                <th >
                                     Actions
                                 </th>
                             </tr>
@@ -30,9 +40,20 @@
                                     <td>{{$event->date->format('d/m/Y')}}</td>
                                     <td>{{$event->description}}</th>
                                     <td>{{$event->address}}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    <td>{{$event->isPostedAsText()}}</td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <div class="p-2">
+                                                <a href="{{action('EventController@edit', $event->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                            </div>
+                                            <div class="p-2">
+                                                <form action="{{action('EventController@destroy', $event->id)}}" method="POST">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -44,4 +65,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('div.alert').delay(3000).slideUp(300).delay(800);
+        });
+    </script>
 @endsection

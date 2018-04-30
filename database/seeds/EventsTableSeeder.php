@@ -29,7 +29,7 @@ class EventsTableSeeder extends Seeder
                 'date'        => '2018-10-03',
                 'user_id'     => 1,
                 'address'     => 'street 3',
-                'description' => 'description 3',   
+                'description' => 'description 3',
             ]
         ]);
     }
