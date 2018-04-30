@@ -8,7 +8,7 @@
                 <div class="card-header">
                     Events
                     <div class="float-right">
-                        <button type="button" class="btn btn-success btn-sm">New</button>
+                        <a href="{{action('EventController@create')}}" class="btn btn-success btn-sm">Create</a>
                     </div>
                 </div>
                 
@@ -29,7 +29,7 @@
                                 <th scope="col">
                                     Posted?
                                 </th>
-                                <th >
+                                <th scope="col">
                                     Actions
                                 </th>
                             </tr>

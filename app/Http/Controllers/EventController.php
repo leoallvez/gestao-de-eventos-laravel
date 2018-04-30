@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -25,7 +26,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        dd('create');
+        $user = Auth::user();
+        return view('event.create', compact('user'));
     }
 
     /**
@@ -36,7 +38,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        dd('store');
+
+        $event = new Event($request->all());
+        $event->save();
+
+        flash("Event create successfully!",'success');
+
+       return redirect('events');
     }
 
     /**
@@ -47,7 +55,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        dd('show');
+
     }
 
     /**
@@ -58,7 +66,11 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        dd('edit');
+        //dd('edit');
+        $user = Auth::user();
+        $event = Event::find($id);
+        return view('event.edit', compact('user', 'event'));
+        
     }
 
     /**
@@ -70,7 +82,12 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd('update');
+        $event = Event::find($id);
+        $event->update($request->all());
+
+        flash("Event successfully updated!",'success');
+
+        return redirect('events');
     }
 
     /**
