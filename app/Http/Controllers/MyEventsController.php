@@ -6,16 +6,26 @@ use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EventController extends Controller
+class MyEventsController extends Controller
 {
+    private $user;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $events = Event::all();
+        $user = Auth::user();
+        $events = Event::where('user_id', $user->id)->orderBy('date', 'desc')->get();
+      
         return view('event.index', compact('events'));
     }
 
@@ -38,13 +48,12 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
         $event = new Event($request->all());
         $event->save();
 
         flash("Event create successfully!",'success');
 
-       return redirect('events');
+       return redirect('my-events');
     }
 
     /**
@@ -66,11 +75,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //dd('edit');
         $user = Auth::user();
         $event = Event::find($id);
         return view('event.edit', compact('user', 'event'));
-        
     }
 
     /**
@@ -83,11 +90,13 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $event = Event::find($id);
+
+        $event->posted = $request->posted ?? false;
         $event->update($request->all());
 
         flash("Event successfully updated!",'success');
 
-        return redirect('events');
+        return redirect('my-events');
     }
 
     /**
@@ -99,9 +108,10 @@ class EventController extends Controller
     public function destroy($id)
     {
        $event = Event::find($id);
-
+    
+       $event->delete();
        flash("Event deleted successfully!",'success');
 
-       return redirect('events');
+       return redirect('my-events');
     }
 }

@@ -6,10 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    My Events
-                    <div class="float-right">
-                        <a href="{{action('MyEventsController@create')}}" class="btn btn-success btn-sm">Create</a>
-                    </div>
+                    Posteds Events
                 </div>
                 
                 <div class="card-body">
@@ -31,7 +28,7 @@
                                         Posted?
                                     </th>
                                     <th scope="col">
-                                        Actions
+                                        User
                                     </th>
                                 </tr>
                             </thead>
@@ -42,20 +39,7 @@
                                         <td>{{$event->description}}</th>
                                         <td>{{$event->address}}</td>
                                         <td>{{$event->isPostedAsText()}}</td>
-                                        <td>
-                                            <div class="d-flex flex-row">
-                                                <div class="p-2">
-                                                    <a href="{{action('MyEventsController@edit', $event->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                                </div>
-                                                <div class="p-2">
-                                                    <form action="{{action('MyEventsController@destroy', $event->id)}}" method="POST">
-                                                        @csrf
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>{{$event->user->name }}</td>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -69,12 +53,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('div.alert').delay(3000).slideUp(300).delay(800);
-        });
-    </script>
 @endsection

@@ -39,15 +39,20 @@
             ]) 
         !!}
     </div>
-    <div class="col-md-3 col-xs-12">
-        {!! Form::label('posted', 'Posted') !!}<br>
-        {!! Form::checkbox('posted', (isset($event)) ? $event->posted : 0, 1) !!}
-    </div>
 </div>
 
 <div class="form-group row">
+    <div class="col-md-3 col-xs-12">
+        <div class="form-check">      
+            {!! Form::checkbox('posted', 1, (isset($event) ? $event->posted : false) ,['class' => 'form-check-input'])!!}
+            {!! Form::label('posted', 'Posted', ['class' => 'form-check-label']) !!}
+        </div>
+    <div>
+</div><br>
+
+<div class="form-group row">
     <div class="col-md-12 col-xs-12">
-        {!! Form::submit($SubmissionButtonName, ['class' => 'btn btn-success']) !!}
-        {!! Html::linkAction('EventController@index','Back', null, ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit($buttonName, ['class' => 'btn btn-success']) !!}
+        {!! Html::linkAction('MyEventsController@index','Back', null, ['class' => 'btn btn-primary']) !!}
     </div>
 </div

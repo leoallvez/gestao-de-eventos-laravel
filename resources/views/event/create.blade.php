@@ -10,8 +10,8 @@
                 </div>
                 
                 <div class="card-body">
-                    {!! Form::open(['url' => 'events', 'method' => 'POST']) !!}
-                	    @include('event._form', ['SubmissionButtonName' => 'Create'])
+                    {!! Form::open(['action' => ['MyEventsController@store'], 'method' => 'POST']) !!}
+                	    @include('event._form', ['buttonName' => 'Create'])
                     {!! Form::close() !!}
                 </div>
             </div>

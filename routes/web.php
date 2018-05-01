@@ -1,5 +1,5 @@
 <?php
-
+use App\Event;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,11 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('events', 'EventController');
+Route::get('/', function () {
+
+    $events = Event::where('posted', true)->where('date','>=', date('Y-m-d'))->orderBy('date', 'desc')->get();
+    return view('public.index', compact('events'));
+});
+
+Route::group(['middleware' => ['private']], function () {
+    Route::resource('my-events', 'MyEventsController');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
