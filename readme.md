@@ -1,60 +1,90 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Sumário
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+> * [Objetivo](#objetivo)
+> * [Requisitos Técnicos](#requisitos-técnicos)
+> * [Executando o Projeto](#executando-o-projeto)
+> * [Usuarios de exemplo](#usuarios-de-exemplo)
+> * [Executando o Projeto](#executando-o-projeto)
 
-## About Laravel
+## Visão Geral
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Sistema para a gestão de eventos, permite que cada usuário crie e edite os seus eventos em uma área protegida por login e senha. Os eventos que que tiverem marcados como postados e forem de data posterior ao dia atual são exibidos na tela inicial do sistema da qual não necessita de autenticação para ser acessados.
+O projeto tem como principal finalidade de ser o produto final do futuro curso de Laravel da [Codeprestige](https://codeprestige.com.br/).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+## Requisitos Técnicos
 
-## Learning Laravel
+<table style="width:100%">
+  <tr>
+    <th>Tecnologias</th>
+    <th>Descrição</th>
+    <th>Versão</th>
+  </tr>
+  <tr>
+    <td>PHP</td>
+    <td>Linguagem de Programação Server Side</td>
+    <td> 7.1.14</td>
+  </tr>
+  <tr>
+    <td>Laravel</td>
+    <td>Framework Server Side</td>
+    <td>5.6.19</td>
+  </tr>
+  <tr>
+    <td>MariaDB</td>
+    <td>Sistema de Gerenciamento de Banco de Dados (SGBD)</td>
+    <td>10.1.25</td>
+  </tr>
+</table>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+## Executando o projeto
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+- Clone este repositório no seu computador
+- Baixe as dependências do projeto com os comandos:
 
-## Laravel Sponsors
+  `composer install --no-scripts`
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+  `npm install`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+- Copie o arquivo `.env.example` e renomeie a cópia para `.env`
+- Crie uma nova chave para a aplicação:
 
-## Contributing
+  `php artisan key:generate`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Em seguida você deve configurar o arquivo .env colocando informaçõs sobre o nome do Banco, Usuário e Senha.
 
-## Security Vulnerabilities
+  ```
+  DB_CONNECTION=<MEU_SGBD>
+  DB_HOST=<IP_AONDE_O_BANCO_SE_ENCONTRA>
+  DB_PORT=<PORTA_DO_BANCO>
+  DB_DATABASE=<NOME_DO_BANCO>
+  DB_USERNAME=<USERNAME>
+  DB_PASSWORD=<SENHA>
+  ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Depois, rode as migrations com:
 
-## License
+  `php artisan migrate --seed`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# gestao-de-eventos-laravel" 
+- Feito isso basta executar o projeto com:
+
+  `php artisan serve`
+
+## Usuarios de exemplo
+
+Usuários de teste cadastrados no sistema.
+
+<table style="width:100%">
+  <tr>
+    <th>E-mail</th>
+    <th>Senha</th>
+  </tr>
+  <tr>
+    <td>user1@gmail.com.br</td>
+    <td>123456</td>
+  </tr>
+  <tr>
+    <td>user2@gmail.com.br</td>
+    <td>123456</td>
+  </tr>
+</table>
