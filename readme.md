@@ -44,8 +44,6 @@ O projeto tem como principal finalidade de ser o produto final do futuro curso d
 
   `composer install --no-scripts`
 
-  `npm install`
-
 - Copie o arquivo `.env.example` e renomeie a cópia para `.env`
 - Crie uma nova chave para a aplicação:
 
