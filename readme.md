@@ -1,6 +1,6 @@
 ## Sumário
 
-> * [Objetivo](#objetivo)
+> * [Visão Geral](#visão-geral)
 > * [Requisitos Técnicos](#requisitos-técnicos)
 > * [Executando o Projeto](#executando-o-projeto)
 > * [Usuarios de exemplo](#usuarios-de-exemplo)
